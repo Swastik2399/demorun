@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Cake</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cake-container">
+        <svg id="cake" viewBox="0 0 200 200" width="200" height="200">
+            <!-- Cake Base -->
+            <rect x="50" y="100" width="100" height="50" fill="#D2691E" />
+            <!-- Top Icing -->
+            <ellipse cx="100" cy="100" rx="55" ry="20" fill="#FFD700" />
+            <!-- Candle -->
+            <rect x="95" y="50" width="10" height="40" fill="red" />
+            <!-- Flame -->
+            <circle cx="100" cy="40" r="6" fill="orange" id="flame" />
+            <!-- Hidden Cake Slice -->
+            <path id="slice" d="M 100 100 L 130 100 L 115 140 Z" fill="#8B4513" opacity="0"/>
+        </svg>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
