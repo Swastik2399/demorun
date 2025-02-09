@@ -1,7 +1,18 @@
-document.addEventListener("DOM ContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     let lastX = 0, lastY = 0, lastZ = 0;
-    let shakeThreshold = 15; // Adjust sensitivity if needed
+    let shakeThreshold = 15; // Adjust if needed
 
+    // REMOVE any existing click event from the cake
+    let cake = document.getElementById("cake");
+    if (cake) {
+        cake.onclick = null;  // Removes inline onclick
+        cake.addEventListener("click", function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
+    }
+
+    // Detect phone shake
     window.addEventListener("devicemotion", function(event) {
         let acceleration = event.accelerationIncludingGravity;
         if (!acceleration) return;
@@ -53,4 +64,4 @@ function cutCake() {
     setTimeout(() => {
         window.location.href = "nextpage.html";
     }, 18000);
-}
+            }
