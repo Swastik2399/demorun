@@ -2,15 +2,23 @@ document.addEventListener("DOMContentLoaded", function() {
     let lastX = 0, lastY = 0, lastZ = 0;
     let shakeThreshold = 15; // Adjust if needed
 
-    // REMOVE any existing click event from the cake
+    // REMOVE ALL CLICK EVENTS FROM THE CAKE
     let cake = document.getElementById("cake");
     if (cake) {
-        cake.onclick = null;  // Removes inline onclick
+        cake.onclick = null;  // Remove any inline onclick
         cake.addEventListener("click", function(event) {
             event.preventDefault();
             event.stopPropagation();
+            console.log("Click prevented");  // Debugging log
         });
     }
+
+    // BLOCK ALL CLICKS ON THE ENTIRE DOCUMENT
+    document.body.addEventListener("click", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        console.log("Global click prevented");  // Debugging log
+    }, true);
 
     // Detect phone shake
     window.addEventListener("devicemotion", function(event) {
@@ -64,4 +72,4 @@ function cutCake() {
     setTimeout(() => {
         window.location.href = "nextpage.html";
     }, 18000);
-            }
+        }
