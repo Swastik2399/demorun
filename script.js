@@ -1,4 +1,24 @@
-document.getElementById("cake").addEventListener("click", function() {
+let lastX = 0, lastY = 0, lastZ = 0;
+let shakeThreshold = 15; // Adjust this value if needed
+
+window.addEventListener("devicemotion", function(event) {
+    let acceleration = event.accelerationIncludingGravity;
+    if (!acceleration) return;
+
+    let deltaX = Math.abs(acceleration.x - lastX);
+    let deltaY = Math.abs(acceleration.y - lastY);
+    let deltaZ = Math.abs(acceleration.z - lastZ);
+
+    if (deltaX + deltaY + deltaZ > shakeThreshold) {
+        cutCake();
+    }
+
+    lastX = acceleration.x;
+    lastY = acceleration.y;
+    lastZ = acceleration.z;
+});
+
+function cutCake() {
     let slice = document.getElementById("slice");
     let flame = document.getElementById("flame");
     let message = document.getElementById("message");
@@ -29,6 +49,6 @@ document.getElementById("cake").addEventListener("click", function() {
 
     // Redirect after 15 seconds
     setTimeout(() => {
-        window.location.href = "nextpage.html"; // Ensure this file exists
+        window.location.href = "nextpage.html";
     }, 18000); // 3s animation + 15s delay
-});
+               }
