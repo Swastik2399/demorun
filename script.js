@@ -1,21 +1,23 @@
-let lastX = 0, lastY = 0, lastZ = 0;
-let shakeThreshold = 15; // Adjust this value if needed
+document.addEventListener("DOM ContentLoaded", function() {
+    let lastX = 0, lastY = 0, lastZ = 0;
+    let shakeThreshold = 15; // Adjust sensitivity if needed
 
-window.addEventListener("devicemotion", function(event) {
-    let acceleration = event.accelerationIncludingGravity;
-    if (!acceleration) return;
+    window.addEventListener("devicemotion", function(event) {
+        let acceleration = event.accelerationIncludingGravity;
+        if (!acceleration) return;
 
-    let deltaX = Math.abs(acceleration.x - lastX);
-    let deltaY = Math.abs(acceleration.y - lastY);
-    let deltaZ = Math.abs(acceleration.z - lastZ);
+        let deltaX = Math.abs(acceleration.x - lastX);
+        let deltaY = Math.abs(acceleration.y - lastY);
+        let deltaZ = Math.abs(acceleration.z - lastZ);
 
-    if (deltaX + deltaY + deltaZ > shakeThreshold) {
-        cutCake();
-    }
+        if (deltaX + deltaY + deltaZ > shakeThreshold) {
+            cutCake();
+        }
 
-    lastX = acceleration.x;
-    lastY = acceleration.y;
-    lastZ = acceleration.z;
+        lastX = acceleration.x;
+        lastY = acceleration.y;
+        lastZ = acceleration.z;
+    });
 });
 
 function cutCake() {
@@ -50,5 +52,5 @@ function cutCake() {
     // Redirect after 15 seconds
     setTimeout(() => {
         window.location.href = "nextpage.html";
-    }, 18000); // 3s animation + 15s delay
-               }
+    }, 18000);
+}
